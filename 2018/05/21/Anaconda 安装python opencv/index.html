@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="xmq blogs">
 <meta property="og:description" content="适用于服务器上多用户安装于自己目录的情况 #Anaconda 首先在官网下载对应的Anaconda的安装包,此处我选择Anaconda3-5.1.0-Linux-x86_64.sh，对应python3.6 bash Anaconda3-5.1.0-Linux-x86_64.sh  ./Anaconda3-5.1.0-Linux-x86_64.sh 安装好Anaconda后，可以检查下python版">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-20T18:15:36.536Z">
+<meta property="og:updated_time" content="2018-05-20T18:18:52.523Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu安装Anaconda和Tensorflow(GPU版)、opencv3 with contrib">
 <meta name="twitter:description" content="适用于服务器上多用户安装于自己目录的情况 #Anaconda 首先在官网下载对应的Anaconda的安装包,此处我选择Anaconda3-5.1.0-Linux-x86_64.sh，对应python3.6 bash Anaconda3-5.1.0-Linux-x86_64.sh  ./Anaconda3-5.1.0-Linux-x86_64.sh 安装好Anaconda后，可以检查下python版">
@@ -335,12 +335,12 @@
 <pre><code>conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/free/
 conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/main/
 conda config --set show_channel_urls yes
-</code></pre><p>##Tensorflow</p>
+</code></pre><p>#Tensorflow</p>
 <p>然后通过Anaconda来安装GPU版本的tensorflow，安装的同时会自动安装CUDA，CUDNN等库</p>
 <pre><code>conda install tensorflow-gpu
 </code></pre><p>配置环境变量</p>
 <pre><code>source .bashrc
-</code></pre><p>##Opencv3 with contrib</p>
+</code></pre><p>#Opencv3 with contrib</p>
 <p>安装带有contrib包的opencv3</p>
 <pre><code>pip install opencv-contrib-python
 </code></pre><p>查看python下opencv的版本</p>
