@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="python,linux," />
 
 
 
@@ -79,14 +79,18 @@
 
 
 
+<meta name="description" content="适用于服务器上多用户安装于自己目录的情况 ##Anaconda 首先在官网下载对应的Anaconda的安装包,此处我选择Anaconda3-5.1.0-Linux-x86_64.sh，对应python3.6 bash Anaconda3-5.1.0-Linux-x86_64.sh  ./Anaconda3-5.1.0-Linux-x86_64.sh 安装好Anaconda后，可以检查下python">
+<meta name="keywords" content="python,linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="first page">
-<meta property="og:url" content="http://yoursite.com/2018/05/21/first-page/index.html">
+<meta property="og:title" content="Ubuntu安装Anaconda和Tensorflow(GPU版)、opencv3 with contrib">
+<meta property="og:url" content="http://yoursite.com/2018/05/21/Anaconda 安装python opencv/index.html">
 <meta property="og:site_name" content="xmq blogs">
+<meta property="og:description" content="适用于服务器上多用户安装于自己目录的情况 ##Anaconda 首先在官网下载对应的Anaconda的安装包,此处我选择Anaconda3-5.1.0-Linux-x86_64.sh，对应python3.6 bash Anaconda3-5.1.0-Linux-x86_64.sh  ./Anaconda3-5.1.0-Linux-x86_64.sh 安装好Anaconda后，可以检查下python">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-20T16:29:02.911Z">
+<meta property="og:updated_time" content="2018-05-20T18:11:39.714Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="first page">
+<meta name="twitter:title" content="Ubuntu安装Anaconda和Tensorflow(GPU版)、opencv3 with contrib">
+<meta name="twitter:description" content="适用于服务器上多用户安装于自己目录的情况 ##Anaconda 首先在官网下载对应的Anaconda的安装包,此处我选择Anaconda3-5.1.0-Linux-x86_64.sh，对应python3.6 bash Anaconda3-5.1.0-Linux-x86_64.sh  ./Anaconda3-5.1.0-Linux-x86_64.sh 安装好Anaconda后，可以检查下python">
 
 
 
@@ -116,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/05/21/first-page/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/05/21/Anaconda 安装python opencv/"/>
 
 
 
 
 
-  <title>first page | xmq blogs</title>
+  <title>Ubuntu安装Anaconda和Tensorflow(GPU版)、opencv3 with contrib | xmq blogs</title>
   
 
 
@@ -229,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/21/first-page/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/21/Anaconda 安装python opencv/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xmq">
@@ -246,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">first page</h1>
+          <h1 class="post-title" itemprop="name headline">Ubuntu安装Anaconda和Tensorflow(GPU版)、opencv3 with contrib</h1>
         
 
         <div class="post-meta">
@@ -258,7 +262,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-21T00:29:02+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-21T01:20:23+08:00">
                 2018-05-21
               </time>
             
@@ -296,7 +300,32 @@
       
 
       
-        
+        <p><strong><em>适用于服务器上多用户安装于自己目录的情况</em></strong></p>
+<p>##Anaconda</p>
+<p>首先在<a href="https://repo.continuum.io/archive/" target="_blank" rel="noopener">官网</a>下载对应的Anaconda的安装包,此处我选择Anaconda3-5.1.0-Linux-x86_64.sh，对应python3.6</p>
+<pre><code>bash Anaconda3-5.1.0-Linux-x86_64.sh
+
+./Anaconda3-5.1.0-Linux-x86_64.sh
+</code></pre><p>安装好Anaconda后，可以检查下python版本</p>
+<pre><code>python -v
+</code></pre><p>安装好的Anaconda里面带有自带的spyder，服务器上用xshell带有图形界面</p>
+<p>为了加速下载将软件的源修改为ustc的源</p>
+<pre><code>conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/free/
+conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/main/
+conda config --set show_channel_urls yes
+</code></pre><p>##Tensorflow</p>
+<p>然后通过Anaconda来安装GPU版本的tensorflow，安装的同时会自动安装CUDA，CUDNN等库</p>
+<pre><code>conda install tensorflow-gpu
+</code></pre><p>配置环境变量</p>
+<pre><code>source .bashrc
+</code></pre><p>##Opencv3 with contrib</p>
+<p>安装带有contrib包的opencv3</p>
+<pre><code>pip install opencv-contrib-python
+</code></pre><p>查看python下opencv的版本</p>
+<pre><code>python
+import cv2
+cv2.__version__
+</code></pre>
       
     </div>
     
@@ -311,6 +340,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+        </div>
+      
 
       
       
@@ -320,8 +357,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/21/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2018/05/21/first-page/" rel="next" title="first page">
+                <i class="fa fa-chevron-left"></i> first page
               </a>
             
           </div>
@@ -329,10 +366,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/21/Anaconda 安装python opencv/" rel="prev" title="Ubuntu安装Anaconda和Tensorflow(GPU版)、opencv3 with contrib">
-                Ubuntu安装Anaconda和Tensorflow(GPU版)、opencv3 with contrib <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
