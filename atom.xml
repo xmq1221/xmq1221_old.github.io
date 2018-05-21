@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-05-20T18:47:23.734Z</updated>
+  <updated>2018-05-21T12:31:29.479Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu安装CUDA、CUDNN</title>
+    <link href="http://yoursite.com/2018/05/21/Ubuntu%E5%AE%89%E8%A3%85CUDA%E3%80%81CUDNN/"/>
+    <id>http://yoursite.com/2018/05/21/Ubuntu安装CUDA、CUDNN/</id>
+    <published>2018-05-21T12:30:11.000Z</published>
+    <updated>2018-05-21T12:31:29.479Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="教程" scheme="http://yoursite.com/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>Ubuntu安装Anaconda和Tensorflow(GPU版)、opencv3 with contrib</title>
