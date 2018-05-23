@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-05-22T02:11:53.915Z</updated>
+  <updated>2018-05-23T13:28:59.963Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://yoursite.com/2018/05/21/Ubuntu%E5%AE%89%E8%A3%85CUDA%E3%80%81CUDNN/"/>
     <id>http://yoursite.com/2018/05/21/Ubuntu安装CUDA、CUDNN/</id>
     <published>2018-05-21T12:30:11.000Z</published>
-    <updated>2018-05-22T02:11:53.915Z</updated>
+    <updated>2018-05-23T13:28:59.963Z</updated>
     
-    <content type="html"><![CDATA[<p><strong><em>适用于多用户服务器安装于自己目录的情况</em></strong></p><p><em>因为安装好Anaconda之后其实已经自带了CUDA、CUDNN这些，但是我发现实际配置caffe还是会有各种各样的问题，所以重新自己安装了</em></p><h1 id="CUDA"><a href="#CUDA" class="headerlink" title="CUDA"></a>CUDA</h1><p>首先在<a href="https://developer.nvidia.com/cuda-toolkit-archive" target="_blank" rel="noopener">官网</a>下载需要的CUDA版本的安装包，以CUDA9.0版本为例，选择后会引导一步步地选择合适的版本，我的选择如下图：</p><p><img src="Ubuntu安装CUDA、CUDNN.assets/屏幕快照 2018-05-21 下午8.38.40.png" alt="1"></p><p>即可开始下载cuda_9.0.176_384.81_linux.run </p>]]></content>
+    <content type="html"><![CDATA[<p><strong><em>适用于多用户服务器安装于自己目录的情况</em></strong></p><p><em>因为安装好Anaconda之后其实已经自带了CUDA、CUDNN这些，但是我发现实际配置caffe还是会有各种各样的问题，所以重新自己安装了</em></p><h1 id="CUDA"><a href="#CUDA" class="headerlink" title="CUDA"></a>CUDA</h1><p>首先在<a href="https://developer.nvidia.com/cuda-toolkit-archive" target="_blank" rel="noopener">官网</a>下载需要的CUDA版本的安装包，以CUDA9.0版本为例，选择后会引导一步步地选择合适的版本，我的选择如下图：</p><p><img src="https://github.com/xmq1221/pic_storehouse/blob/master/pages/Ubuntu_CUDA_CUDNN/1.png" alt="1"></p><p>即可开始下载cuda_9.0.176_384.81_linux.run </p>]]></content>
     
     <summary type="html">
     
@@ -65,9 +65,9 @@
       <category term="教程" scheme="http://yoursite.com/categories/%E6%95%99%E7%A8%8B/"/>
     
     
-      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
-    
       <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
     
   </entry>
   
