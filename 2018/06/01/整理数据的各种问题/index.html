@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="python," />
 
 
 
@@ -81,13 +81,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="xmq blogs">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="三天理数据，训练两小时。 最近一直在整理各种各样的数据，从甲方发过来的数据一般都特别乱，甚至自带的标注都不能用，愁。 问题1图片名中有中文：需要重新对图片进行排序。 问题2从网上爬来的、排序得到的图片有的时候是损坏的，需要判断图片是否是有效图片 1234567891011121314def is_valid_image(filename):    valid = True    try:">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="整理数据的各种问题">
+<meta property="og:url" content="http://yoursite.com/2018/06/01/整理数据的各种问题/index.html">
 <meta property="og:site_name" content="xmq blogs">
+<meta property="og:description" content="三天理数据，训练两小时。 最近一直在整理各种各样的数据，从甲方发过来的数据一般都特别乱，甚至自带的标注都不能用，愁。 问题1图片名中有中文：需要重新对图片进行排序。 问题2从网上爬来的、排序得到的图片有的时候是损坏的，需要判断图片是否是有效图片 1234567891011121314def is_valid_image(filename):    valid = True    try:">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-01T13:12:32.182Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xmq blogs">
+<meta name="twitter:title" content="整理数据的各种问题">
+<meta name="twitter:description" content="三天理数据，训练两小时。 最近一直在整理各种各样的数据，从甲方发过来的数据一般都特别乱，甚至自带的标注都不能用，愁。 问题1图片名中有中文：需要重新对图片进行排序。 问题2从网上爬来的、排序得到的图片有的时候是损坏的，需要判断图片是否是有效图片 1234567891011121314def is_valid_image(filename):    valid = True    try:">
 
 
 
@@ -117,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/06/01/整理数据的各种问题/"/>
 
 
 
 
 
-  <title>xmq blogs</title>
+  <title>整理数据的各种问题 | xmq blogs</title>
   
 
 
@@ -142,8 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -216,9 +220,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -248,9 +252,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/01/整理数据的各种问题/" itemprop="url">整理数据的各种问题</a></h1>
+          <h1 class="post-title" itemprop="name headline">整理数据的各种问题</h1>
         
 
         <div class="post-meta">
@@ -300,17 +302,13 @@
       
 
       
-        
-          
-            <p>三天理数据，训练两小时。</p>
+        <p>三天理数据，训练两小时。</p>
 <p>最近一直在整理各种各样的数据，从甲方发过来的数据一般都特别乱，甚至自带的标注都不能用，愁。</p>
 <h1 id="问题1"><a href="#问题1" class="headerlink" title="问题1"></a>问题1</h1><p>图片名中有中文：需要重新对图片进行排序。</p>
 <h1 id="问题2"><a href="#问题2" class="headerlink" title="问题2"></a>问题2</h1><p>从网上爬来的、排序得到的图片有的时候是损坏的，需要判断图片是否是有效图片</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_valid_image</span><span class="params">(filename)</span>:</span></span><br><span class="line">    valid = <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        Image.open(filename).load()</span><br><span class="line">    <span class="keyword">except</span> OSError:</span><br><span class="line">        valid = <span class="keyword">False</span></span><br><span class="line">    <span class="keyword">return</span> valid</span><br><span class="line"></span><br><span class="line">f = open(<span class="string">'result.txt'</span>,<span class="string">'w'</span>)</span><br><span class="line">flag = is_valid_image(list)</span><br><span class="line">print(flag)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> flag:</span><br><span class="line">	f.write(<span class="string">'not valid image'</span>+<span class="string">'\n'</span>)</span><br><span class="line">    <span class="keyword">continue</span></span><br></pre></td></tr></table></figure>
 <p><em>待续</em></p>
 
-          
-        
       
     </div>
     
@@ -325,323 +323,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/21/Ubuntu安装CUDA、CUDNN/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xmq">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xmq blogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/21/Ubuntu安装CUDA、CUDNN/" itemprop="url">Ubuntu安装CUDA、CUDNN</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-21T20:30:11+08:00">
-                2018-05-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/教程/" itemprop="url" rel="index">
-                    <span itemprop="name">教程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/python/" rel="tag"># python</a>
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong><em>适用于多用户服务器安装于自己目录的情况</em></strong></p>
-<p><em>因为安装好Anaconda之后其实已经自带了CUDA、CUDNN这些，但是我发现实际配置caffe还是会有各种各样的问题，所以重新自己安装了</em></p>
-<h1 id="CUDA"><a href="#CUDA" class="headerlink" title="CUDA"></a>CUDA</h1><p>首先在<a href="https://developer.nvidia.com/cuda-toolkit-archive" target="_blank" rel="noopener">官网</a>下载需要的CUDA版本的安装包，以CUDA9.0版本为例，选择后会引导一步步地选择合适的版本，我的选择如下图：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/12286585-0703ee25c2e76cce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1"></p>
-<p>即可开始下载cuda_9.0.176_384.81_linux.run </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
       
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/21/Anaconda 安装python opencv/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xmq">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xmq blogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/21/Anaconda 安装python opencv/" itemprop="url">Ubuntu安装Anaconda和Tensorflow(GPU版)、opencv3 with contrib</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-21T01:20:23+08:00">
-                2018-05-21
-              </time>
+              <a href="/2018/05/21/Ubuntu安装CUDA、CUDNN/" rel="next" title="Ubuntu安装CUDA、CUDNN">
+                <i class="fa fa-chevron-left"></i> Ubuntu安装CUDA、CUDNN
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/教程/" itemprop="url" rel="index">
-                    <span itemprop="name">教程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p><strong><em>适用于服务器上多用户安装于自己目录的情况</em></strong></p>
-<h1 id="Anaconda"><a href="#Anaconda" class="headerlink" title="Anaconda"></a>Anaconda</h1><p>首先在<a href="https://repo.continuum.io/archive/" target="_blank" rel="noopener">官网</a>下载对应的Anaconda的安装包,此处我选择Anaconda3-5.1.0-Linux-x86_64.sh，对应python3.6</p>
-<pre><code>bash Anaconda3-5.1.0-Linux-x86_64.sh
-
-./Anaconda3-5.1.0-Linux-x86_64.sh
-</code></pre><p>安装好Anaconda后，可以检查下python版本</p>
-<pre><code>python -v
-</code></pre><p>安装好的Anaconda里面带有自带的spyder，服务器上用xshell带有图形界面</p>
-<p>为了加速下载将软件的源修改为ustc的源</p>
-<pre><code>conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/free/
-conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/main/
-conda config --set show_channel_urls yes
-</code></pre><h1 id="Tensorflow"><a href="#Tensorflow" class="headerlink" title="Tensorflow"></a>Tensorflow</h1><p>然后通过Anaconda来安装GPU版本的tensorflow，安装的同时会自动安装CUDA，CUDNN等库</p>
-<pre><code>conda install tensorflow-gpu
-</code></pre><p>配置环境变量</p>
-<pre><code>source .bashrc
-</code></pre><h1 id="Opencv3-with-contrib"><a href="#Opencv3-with-contrib" class="headerlink" title="Opencv3 with contrib"></a>Opencv3 with contrib</h1><p>安装带有contrib包的opencv3</p>
-<pre><code>pip install opencv-contrib-python
-</code></pre><p>查看python下opencv的版本</p>
-<pre><code>python
-import cv2
-cv2.__version__
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -651,10 +362,11 @@ cv2.__version__
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -662,6 +374,10 @@ cv2.__version__
 
 
           
+
+  
+
+
 
         </div>
         
@@ -682,8 +398,17 @@ cv2.__version__
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -750,6 +475,22 @@ cv2.__version__
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题1"><span class="nav-number">1.</span> <span class="nav-text">问题1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题2"><span class="nav-number">2.</span> <span class="nav-text">问题2</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -883,6 +624,10 @@ cv2.__version__
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

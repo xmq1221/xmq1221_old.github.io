@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-05-26T10:58:41.980Z</updated>
+  <updated>2018-06-01T13:12:32.182Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>整理数据的各种问题</title>
+    <link href="http://yoursite.com/2018/06/01/%E6%95%B4%E7%90%86%E6%95%B0%E6%8D%AE%E7%9A%84%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98/"/>
+    <id>http://yoursite.com/2018/06/01/整理数据的各种问题/</id>
+    <published>2018-06-01T13:00:40.000Z</published>
+    <updated>2018-06-01T13:12:32.182Z</updated>
+    
+    <content type="html"><![CDATA[<p>三天理数据，训练两小时。</p><p>最近一直在整理各种各样的数据，从甲方发过来的数据一般都特别乱，甚至自带的标注都不能用，愁。</p><h1 id="问题1"><a href="#问题1" class="headerlink" title="问题1"></a>问题1</h1><p>图片名中有中文：需要重新对图片进行排序。</p><h1 id="问题2"><a href="#问题2" class="headerlink" title="问题2"></a>问题2</h1><p>从网上爬来的、排序得到的图片有的时候是损坏的，需要判断图片是否是有效图片</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_valid_image</span><span class="params">(filename)</span>:</span></span><br><span class="line">    valid = <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        Image.open(filename).load()</span><br><span class="line">    <span class="keyword">except</span> OSError:</span><br><span class="line">        valid = <span class="keyword">False</span></span><br><span class="line">    <span class="keyword">return</span> valid</span><br><span class="line"></span><br><span class="line">f = open(<span class="string">'result.txt'</span>,<span class="string">'w'</span>)</span><br><span class="line">flag = is_valid_image(list)</span><br><span class="line">print(flag)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> flag:</span><br><span class="line">f.write(<span class="string">'not valid image'</span>+<span class="string">'\n'</span>)</span><br><span class="line">    <span class="keyword">continue</span></span><br></pre></td></tr></table></figure><p><em>待续</em></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;三天理数据，训练两小时。&lt;/p&gt;
+&lt;p&gt;最近一直在整理各种各样的数据，从甲方发过来的数据一般都特别乱，甚至自带的标注都不能用，愁。&lt;/p&gt;
+&lt;h1 id=&quot;问题1&quot;&gt;&lt;a href=&quot;#问题1&quot; class=&quot;headerlink&quot; title=&quot;问题1&quot;&gt;&lt;/a&gt;问题1&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Ubuntu安装CUDA、CUDNN</title>
     <link href="http://yoursite.com/2018/05/21/Ubuntu%E5%AE%89%E8%A3%85CUDA%E3%80%81CUDNN/"/>
     <id>http://yoursite.com/2018/05/21/Ubuntu安装CUDA、CUDNN/</id>
     <published>2018-05-21T12:30:11.000Z</published>
-    <updated>2018-05-26T10:58:41.980Z</updated>
+    <updated>2018-05-26T10:59:23.386Z</updated>
     
     <content type="html"><![CDATA[<p><strong><em>适用于多用户服务器安装于自己目录的情况</em></strong></p><p><em>因为安装好Anaconda之后其实已经自带了CUDA、CUDNN这些，但是我发现实际配置caffe还是会有各种各样的问题，所以重新自己安装了</em></p><h1 id="CUDA"><a href="#CUDA" class="headerlink" title="CUDA"></a>CUDA</h1><p>首先在<a href="https://developer.nvidia.com/cuda-toolkit-archive" target="_blank" rel="noopener">官网</a>下载需要的CUDA版本的安装包，以CUDA9.0版本为例，选择后会引导一步步地选择合适的版本，我的选择如下图：</p><p><img src="https://upload-images.jianshu.io/upload_images/12286585-0703ee25c2e76cce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1"></p><p>即可开始下载cuda_9.0.176_384.81_linux.run </p>]]></content>
     
