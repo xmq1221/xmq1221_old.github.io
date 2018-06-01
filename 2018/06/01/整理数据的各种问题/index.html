@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="三天理数据，训练两小时。 最近一直在整理各种各样的数据，从甲方发过来的数据一般都特别乱，甚至自带的标注都不能用，愁。 问题1图片名中有中文：需要重新对图片进行排序。 问题2从网上爬来的、排序得到的图片有的时候是损坏的，需要判断图片是否是有效图片 1234567891011121314def is_valid_image(filename):    valid = True    try:">
+<meta name="description" content="三天理数据，训练两小时。 最近一直在整理各种各样的数据，从甲方发过来的数据一般都特别乱，甚至自带的标注都不能用，愁。 问题1图片名中有中文：需要重新对图片进行排序。 错误代码(python3) 12img = cv2.imread(&apos;浙TF2ULF_203062.jpg&apos;)hue_image = cv2.cvtColor(img, cv2.COLOR_BGR2HSV) 错误报告 12345Open">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="整理数据的各种问题">
 <meta property="og:url" content="http://yoursite.com/2018/06/01/整理数据的各种问题/index.html">
 <meta property="og:site_name" content="xmq blogs">
-<meta property="og:description" content="三天理数据，训练两小时。 最近一直在整理各种各样的数据，从甲方发过来的数据一般都特别乱，甚至自带的标注都不能用，愁。 问题1图片名中有中文：需要重新对图片进行排序。 问题2从网上爬来的、排序得到的图片有的时候是损坏的，需要判断图片是否是有效图片 1234567891011121314def is_valid_image(filename):    valid = True    try:">
+<meta property="og:description" content="三天理数据，训练两小时。 最近一直在整理各种各样的数据，从甲方发过来的数据一般都特别乱，甚至自带的标注都不能用，愁。 问题1图片名中有中文：需要重新对图片进行排序。 错误代码(python3) 12img = cv2.imread(&apos;浙TF2ULF_203062.jpg&apos;)hue_image = cv2.cvtColor(img, cv2.COLOR_BGR2HSV) 错误报告 12345Open">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-01T13:12:32.182Z">
+<meta property="og:updated_time" content="2018-06-01T13:42:28.012Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="整理数据的各种问题">
-<meta name="twitter:description" content="三天理数据，训练两小时。 最近一直在整理各种各样的数据，从甲方发过来的数据一般都特别乱，甚至自带的标注都不能用，愁。 问题1图片名中有中文：需要重新对图片进行排序。 问题2从网上爬来的、排序得到的图片有的时候是损坏的，需要判断图片是否是有效图片 1234567891011121314def is_valid_image(filename):    valid = True    try:">
+<meta name="twitter:description" content="三天理数据，训练两小时。 最近一直在整理各种各样的数据，从甲方发过来的数据一般都特别乱，甚至自带的标注都不能用，愁。 问题1图片名中有中文：需要重新对图片进行排序。 错误代码(python3) 12img = cv2.imread(&apos;浙TF2ULF_203062.jpg&apos;)hue_image = cv2.cvtColor(img, cv2.COLOR_BGR2HSV) 错误报告 12345Open">
 
 
 
@@ -305,8 +305,13 @@
         <p>三天理数据，训练两小时。</p>
 <p>最近一直在整理各种各样的数据，从甲方发过来的数据一般都特别乱，甚至自带的标注都不能用，愁。</p>
 <h1 id="问题1"><a href="#问题1" class="headerlink" title="问题1"></a>问题1</h1><p>图片名中有中文：需要重新对图片进行排序。</p>
+<h3 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h3><p>代码(python3)</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">img = cv2.imread(<span class="string">'浙TF2ULF_203062.jpg'</span>)</span><br><span class="line">hue_image = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)</span><br></pre></td></tr></table></figure>
+<p>错误报告</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">OpenCV(3.4.1) Error: Assertion failed ((scn == 3 || scn == 4) &amp;&amp; (depth == 0 || depth == 5)) in cv::cvtColor, file D:\Build\OpenCV\opencv-3.4.1\modules\imgproc\src\color.cpp, line 11214</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;1.py&quot;, line 5, in &lt;module&gt;</span><br><span class="line">    hue_image = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)</span><br><span class="line">cv2.error: OpenCV(3.4.1) D:\Build\OpenCV\opencv-3.4.1\modules\imgproc\src\color.cpp:11214: error: (-215) (scn == 3 || scn == 4) &amp;&amp; (depth == 0 || depth == 5) in function cv::cvtColor</span><br></pre></td></tr></table></figure>
+<p>去掉“浙”字重新命名即可</p>
 <h1 id="问题2"><a href="#问题2" class="headerlink" title="问题2"></a>问题2</h1><p>从网上爬来的、排序得到的图片有的时候是损坏的，需要判断图片是否是有效图片</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_valid_image</span><span class="params">(filename)</span>:</span></span><br><span class="line">    valid = <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        Image.open(filename).load()</span><br><span class="line">    <span class="keyword">except</span> OSError:</span><br><span class="line">        valid = <span class="keyword">False</span></span><br><span class="line">    <span class="keyword">return</span> valid</span><br><span class="line"></span><br><span class="line">f = open(<span class="string">'result.txt'</span>,<span class="string">'w'</span>)</span><br><span class="line">flag = is_valid_image(list)</span><br><span class="line">print(flag)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> flag:</span><br><span class="line">	f.write(<span class="string">'not valid image'</span>+<span class="string">'\n'</span>)</span><br><span class="line">    <span class="keyword">continue</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_valid_image</span><span class="params">(filename)</span>:</span></span><br><span class="line">    valid = <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        Image.open(filename).load()</span><br><span class="line">    <span class="keyword">except</span> OSError:</span><br><span class="line">        valid = <span class="keyword">False</span></span><br><span class="line">    <span class="keyword">return</span> valid</span><br><span class="line"></span><br><span class="line">f = open(<span class="string">'result.txt'</span>,<span class="string">'w'</span>)</span><br><span class="line">flag = is_valid_image(list)</span><br><span class="line">print(flag)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> flag:</span><br><span class="line">	f.write(<span class="string">'not valid image'</span>+<span class="string">'\n'</span>)</span><br><span class="line">    <span class="keyword">continue</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    do something</span><br></pre></td></tr></table></figure>
 <p><em>待续</em></p>
 
       
@@ -485,7 +490,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题1"><span class="nav-number">1.</span> <span class="nav-text">问题1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题2"><span class="nav-number">2.</span> <span class="nav-text">问题2</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题1"><span class="nav-number">1.</span> <span class="nav-text">问题1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#错误"><span class="nav-number">1.0.1.</span> <span class="nav-text">错误</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题2"><span class="nav-number">2.</span> <span class="nav-text">问题2</span></a></li></ol></div>
             
 
           </div>
