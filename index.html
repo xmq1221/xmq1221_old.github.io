@@ -454,6 +454,24 @@
 <h1 id="CUDA"><a href="#CUDA" class="headerlink" title="CUDA"></a>CUDA</h1><p>首先在<a href="https://developer.nvidia.com/cuda-toolkit-archive" target="_blank" rel="noopener">官网</a>下载需要的CUDA版本的安装包，以CUDA9.0版本为例，选择后会引导一步步地选择合适的版本，我的选择如下图：</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/12286585-0703ee25c2e76cce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1"></p>
 <p>即可开始下载cuda_9.0.176_384.81_linux.run </p>
+<p>下载好后，安装CUDA</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod +x cuda_9.0.176_384.81_linux.run</span><br><span class="line">./cuda_9.0.176_384.81_linux.run</span><br></pre></td></tr></table></figure>
+<p>添加环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vi  ~/.bashrc</span><br><span class="line">export PATH=&quot;/yourpath/cuda-9.0/bin:$PATH&quot;</span><br><span class="line">export LD_LIBRARY_PATH=/yourpath/cuda-9.0/lib64</span><br><span class="line"></span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
+<p>查看自己现在安装的CUDA版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvcc -V</span><br></pre></td></tr></table></figure>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="找不到nvcc"><a href="#找不到nvcc" class="headerlink" title="找不到nvcc"></a>找不到nvcc</h3><p>原因是环境路径未设置，设置PATH和LD_LIBRARY_PATH</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export PATH=&quot;/yourpath/cuda-9.0/bin:$PATH&quot;</span><br><span class="line">export LD_LIBRARY_PATH=/yourpath/cuda-9.0/lib64</span><br></pre></td></tr></table></figure>
+<h1 id="cuDNN"><a href="#cuDNN" class="headerlink" title="cuDNN"></a>cuDNN</h1><p>需要根据上一步安装的CUDA版本来下载对应的cuDNN安装包，这里我下载了cudnn-9.0-linux-x64-v7.1.tgz </p>
+<p>解压文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar xvf cudnn-9.0-linux-x64-v7.1.tgz</span><br></pre></td></tr></table></figure>
+<p>得到一个cuda文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd cuda</span><br><span class="line">cp include/cudnn.h /yourpath/cuda-9.0/include/</span><br><span class="line">cp lib64/libcudnn* /yourpath/cuda-9.0/lib64/</span><br><span class="line">chmod a+r /yourpath/cuda-9.0/include/cudnn.h /yourpath/cuda-9.0/lib64/libcudnn*</span><br></pre></td></tr></table></figure>
+<p>查看cuDNN版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /yourpath/cuda-9.0/include/cudnn.h |grep CUDNN_MAJOR -A 2</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#define CUDNN_MAJOR 7</span><br><span class="line">#define CUDNN_MINOR 1</span><br><span class="line">#define CUDNN_PATCHLEVEL 1</span><br><span class="line">--</span><br><span class="line">#define CUDNN_VERSION    (CUDNN_MAJOR * 1000 + CUDNN_MINOR * 100 + CUDNN_PATCHLEVEL)</span><br><span class="line"></span><br><span class="line">#include &quot;driver_types.h&quot;</span><br></pre></td></tr></table></figure>
+<p>可知cuDNN版本为7.1.1</p>
 
           
         
@@ -617,7 +635,8 @@ conda config --set show_channel_urls yes
 <pre><code>python
 import cv2
 cv2.__version__
-</code></pre>
+</code></pre><p>​    </p>
+
           
         
       
