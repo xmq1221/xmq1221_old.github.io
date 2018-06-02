@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-06-02T06:29:46.100Z</updated>
+  <updated>2018-06-02T07:12:21.624Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu用Anaconda 安装PyTorch、torchvision</title>
+    <link href="http://yoursite.com/2018/06/02/Anaconda-%E5%AE%89%E8%A3%85pytorch%E3%80%81torchvision/"/>
+    <id>http://yoursite.com/2018/06/02/Anaconda-安装pytorch、torchvision/</id>
+    <published>2018-06-02T06:45:46.000Z</published>
+    <updated>2018-06-02T07:12:21.624Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong><em>适用于服务器上多用户安装于自己目录的情况</em></strong></p><h1 id="Anaconda"><a href="#Anaconda" class="headerlink" title="Anaconda"></a>Anaconda</h1><p>安装Anaconda见<a href="https://xmq1221.github.io/2018/05/21/Anaconda%20%E5%AE%89%E8%A3%85python%20opencv/" target="_blank" rel="noopener">此篇</a></p><h1 id="CUDA"><a href="#CUDA" class="headerlink" title="CUDA"></a>CUDA</h1><p>安装CUDA见<a href="https://xmq1221.github.io/2018/05/21/Anaconda%20%E5%AE%89%E8%A3%85python%20opencv/" target="_blank" rel="noopener">此篇</a></p><p>查看CUDA版本</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvcc -V</span><br></pre></td></tr></table></figure><h1 id="Pytorch-amp-torchvision"><a href="#Pytorch-amp-torchvision" class="headerlink" title="Pytorch &amp; torchvision"></a>Pytorch &amp; torchvision</h1><p>修改软件源为清华的源</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ conda config --set show_channel_urls yes</span><br></pre></td></tr></table></figure><p>去Pytorch<a href="https://pytorch.org/" target="_blank" rel="noopener">官网</a>根据需要的版本下载安装，需要关注的有：</p><ul><li>OS</li><li>Package Manager</li><li>Python</li><li>CUDA</li></ul><p>本次选择如图</p><p><img src="https://upload-images.jianshu.io/upload_images/12286585-43a4e31e33794098.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1"></p><p>按照command提示下载</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install pytorch torchvision cuda90 -c pytorch</span><br></pre></td></tr></table></figure><p>完成之后可在python中查看</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torchvision</span><br><span class="line">print(torch.__version__)<span class="comment">#输出PyTorch版本</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;strong&gt;&lt;em&gt;适用于服务器上多用户安装于自己目录的情况&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Anaconda&quot;&gt;&lt;a href=&quot;#Anaconda&quot; class=&quot;headerlink&quot; title=&quot;Anaconda&quot;&gt;&lt;/a&gt;Anaconda
+      
+    
+    </summary>
+    
+      <category term="教程" scheme="http://yoursite.com/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>TensorFlow Problems</title>

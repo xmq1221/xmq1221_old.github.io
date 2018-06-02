@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2018/06/02/Anaconda-%E5%AE%89%E8%A3%85pytorch%E3%80%81torchvision/</loc>
+    
+    <lastmod>2018-06-02T07:12:21.624Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/05/21/Ubuntu%E5%AE%89%E8%A3%85CUDA%E3%80%81CUDNN/</loc>
     
     <lastmod>2018-06-02T06:36:35.372Z</lastmod>

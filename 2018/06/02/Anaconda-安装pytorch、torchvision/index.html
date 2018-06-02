@@ -81,18 +81,20 @@
 
 
 
-<meta name="description" content="适用于服务器上多用户安装于自己目录的情况 Anaconda首先在官网下载对应的Anaconda的安装包,此处我选择Anaconda3-5.1.0-Linux-x86_64.sh，对应python3.6 bash Anaconda3-5.1.0-Linux-x86_64.sh  ./Anaconda3-5.1.0-Linux-x86_64.sh 安装好Anaconda后，可以检查下python版本">
+<meta name="description" content="适用于服务器上多用户安装于自己目录的情况 Anaconda安装Anaconda见此篇 CUDA安装CUDA见此篇 查看CUDA版本 1nvcc -V Pytorch &amp;amp; torchvision修改软件源为清华的源 1conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ con">
 <meta name="keywords" content="python,linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu安装Anaconda和Tensorflow(GPU版)、opencv3 with contrib">
-<meta property="og:url" content="http://yoursite.com/2018/05/21/Anaconda 安装python opencv/index.html">
+<meta property="og:title" content="Ubuntu用Anaconda 安装PyTorch、torchvision">
+<meta property="og:url" content="http://yoursite.com/2018/06/02/Anaconda-安装pytorch、torchvision/index.html">
 <meta property="og:site_name" content="xmq blogs">
-<meta property="og:description" content="适用于服务器上多用户安装于自己目录的情况 Anaconda首先在官网下载对应的Anaconda的安装包,此处我选择Anaconda3-5.1.0-Linux-x86_64.sh，对应python3.6 bash Anaconda3-5.1.0-Linux-x86_64.sh  ./Anaconda3-5.1.0-Linux-x86_64.sh 安装好Anaconda后，可以检查下python版本">
+<meta property="og:description" content="适用于服务器上多用户安装于自己目录的情况 Anaconda安装Anaconda见此篇 CUDA安装CUDA见此篇 查看CUDA版本 1nvcc -V Pytorch &amp;amp; torchvision修改软件源为清华的源 1conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ con">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-01T13:15:44.157Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/12286585-43a4e31e33794098.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-06-02T07:12:21.624Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ubuntu安装Anaconda和Tensorflow(GPU版)、opencv3 with contrib">
-<meta name="twitter:description" content="适用于服务器上多用户安装于自己目录的情况 Anaconda首先在官网下载对应的Anaconda的安装包,此处我选择Anaconda3-5.1.0-Linux-x86_64.sh，对应python3.6 bash Anaconda3-5.1.0-Linux-x86_64.sh  ./Anaconda3-5.1.0-Linux-x86_64.sh 安装好Anaconda后，可以检查下python版本">
+<meta name="twitter:title" content="Ubuntu用Anaconda 安装PyTorch、torchvision">
+<meta name="twitter:description" content="适用于服务器上多用户安装于自己目录的情况 Anaconda安装Anaconda见此篇 CUDA安装CUDA见此篇 查看CUDA版本 1nvcc -V Pytorch &amp;amp; torchvision修改软件源为清华的源 1conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ con">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/12286585-43a4e31e33794098.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -122,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/05/21/Anaconda 安装python opencv/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/06/02/Anaconda-安装pytorch、torchvision/"/>
 
 
 
 
 
-  <title>Ubuntu安装Anaconda和Tensorflow(GPU版)、opencv3 with contrib | xmq blogs</title>
+  <title>Ubuntu用Anaconda 安装PyTorch、torchvision | xmq blogs</title>
   
 
 
@@ -235,7 +237,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/21/Anaconda 安装python opencv/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/02/Anaconda-安装pytorch、torchvision/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xmq">
@@ -252,7 +254,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Ubuntu安装Anaconda和Tensorflow(GPU版)、opencv3 with contrib</h1>
+          <h1 class="post-title" itemprop="name headline">Ubuntu用Anaconda 安装PyTorch、torchvision</h1>
         
 
         <div class="post-meta">
@@ -264,8 +266,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-21T01:20:23+08:00">
-                2018-05-21
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-02T14:45:46+08:00">
+                2018-06-02
               </time>
             
 
@@ -325,28 +327,25 @@
 
       
         <p><strong><em>适用于服务器上多用户安装于自己目录的情况</em></strong></p>
-<h1 id="Anaconda"><a href="#Anaconda" class="headerlink" title="Anaconda"></a>Anaconda</h1><p>首先在<a href="https://repo.continuum.io/archive/" target="_blank" rel="noopener">官网</a>下载对应的Anaconda的安装包,此处我选择Anaconda3-5.1.0-Linux-x86_64.sh，对应python3.6</p>
-<pre><code>bash Anaconda3-5.1.0-Linux-x86_64.sh
-
-./Anaconda3-5.1.0-Linux-x86_64.sh
-</code></pre><p>安装好Anaconda后，可以检查下python版本</p>
-<pre><code>python -v
-</code></pre><p>安装好的Anaconda里面带有自带的spyder，服务器上用xshell带有图形界面</p>
-<p>为了加速下载将软件的源修改为ustc的源</p>
-<pre><code>conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/free/
-conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/main/
-conda config --set show_channel_urls yes
-</code></pre><h1 id="Tensorflow"><a href="#Tensorflow" class="headerlink" title="Tensorflow"></a>Tensorflow</h1><p>然后通过Anaconda来安装GPU版本的tensorflow，安装的同时会自动安装CUDA，CUDNN等库</p>
-<pre><code>conda install tensorflow-gpu
-</code></pre><p>配置环境变量</p>
-<pre><code>source .bashrc
-</code></pre><h1 id="Opencv3-with-contrib"><a href="#Opencv3-with-contrib" class="headerlink" title="Opencv3 with contrib"></a>Opencv3 with contrib</h1><p>安装带有contrib包的opencv3</p>
-<pre><code>pip install opencv-contrib-python
-</code></pre><p>查看python下opencv的版本</p>
-<pre><code>python
-import cv2
-cv2.__version__
-</code></pre><p>​    </p>
+<h1 id="Anaconda"><a href="#Anaconda" class="headerlink" title="Anaconda"></a>Anaconda</h1><p>安装Anaconda见<a href="https://xmq1221.github.io/2018/05/21/Anaconda%20%E5%AE%89%E8%A3%85python%20opencv/" target="_blank" rel="noopener">此篇</a></p>
+<h1 id="CUDA"><a href="#CUDA" class="headerlink" title="CUDA"></a>CUDA</h1><p>安装CUDA见<a href="https://xmq1221.github.io/2018/05/21/Anaconda%20%E5%AE%89%E8%A3%85python%20opencv/" target="_blank" rel="noopener">此篇</a></p>
+<p>查看CUDA版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvcc -V</span><br></pre></td></tr></table></figure>
+<h1 id="Pytorch-amp-torchvision"><a href="#Pytorch-amp-torchvision" class="headerlink" title="Pytorch &amp; torchvision"></a>Pytorch &amp; torchvision</h1><p>修改软件源为清华的源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ conda config --set show_channel_urls yes</span><br></pre></td></tr></table></figure>
+<p>去Pytorch<a href="https://pytorch.org/" target="_blank" rel="noopener">官网</a>根据需要的版本下载安装，需要关注的有：</p>
+<ul>
+<li>OS</li>
+<li>Package Manager</li>
+<li>Python</li>
+<li>CUDA</li>
+</ul>
+<p>本次选择如图</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/12286585-43a4e31e33794098.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1"></p>
+<p>按照command提示下载</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install pytorch torchvision cuda90 -c pytorch</span><br></pre></td></tr></table></figure>
+<p>完成之后可在python中查看</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torchvision</span><br><span class="line">print(torch.__version__)<span class="comment">#输出PyTorch版本</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -379,15 +378,15 @@ cv2.__version__
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/06/02/TensorFlow-Problems/" rel="next" title="TensorFlow Problems">
+                <i class="fa fa-chevron-left"></i> TensorFlow Problems
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/21/Ubuntu安装CUDA、CUDNN/" rel="prev" title="Ubuntu安装CUDA、CUDNN">
-                Ubuntu安装CUDA、CUDNN <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -526,7 +525,7 @@ cv2.__version__
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Anaconda"><span class="nav-number">1.</span> <span class="nav-text">Anaconda</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tensorflow"><span class="nav-number">2.</span> <span class="nav-text">Tensorflow</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Opencv3-with-contrib"><span class="nav-number">3.</span> <span class="nav-text">Opencv3 with contrib</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Anaconda"><span class="nav-number">1.</span> <span class="nav-text">Anaconda</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CUDA"><span class="nav-number">2.</span> <span class="nav-text">CUDA</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pytorch-amp-torchvision"><span class="nav-number">3.</span> <span class="nav-text">Pytorch &amp; torchvision</span></a></li></ol></div>
             
 
           </div>
