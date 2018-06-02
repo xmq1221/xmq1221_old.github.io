@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="python,linux," />
+  <meta name="keywords" content="python,tensorflow," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="适用于服务器上多用户安装于自己目录的情况 Anaconda首先在官网下载对应的Anaconda的安装包,此处我选择Anaconda3-5.1.0-Linux-x86_64.sh，对应python3.6 bash Anaconda3-5.1.0-Linux-x86_64.sh  ./Anaconda3-5.1.0-Linux-x86_64.sh 安装好Anaconda后，可以检查下python版本">
-<meta name="keywords" content="python,linux">
+<meta name="description" content="问题1描述： 1import tensorflow 控制台输出 12RuntimeError: module compiled against API version 0xc but this version of numpy is 0xbRuntimeError: module compiled against API version 0xc but this version of numpy">
+<meta name="keywords" content="python,tensorflow">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu安装Anaconda和Tensorflow(GPU版)、opencv3 with contrib">
-<meta property="og:url" content="http://yoursite.com/2018/05/21/Anaconda 安装python opencv/index.html">
+<meta property="og:title" content="TensorFlow Problems">
+<meta property="og:url" content="http://yoursite.com/2018/06/02/TensorFlow-Problems/index.html">
 <meta property="og:site_name" content="xmq blogs">
-<meta property="og:description" content="适用于服务器上多用户安装于自己目录的情况 Anaconda首先在官网下载对应的Anaconda的安装包,此处我选择Anaconda3-5.1.0-Linux-x86_64.sh，对应python3.6 bash Anaconda3-5.1.0-Linux-x86_64.sh  ./Anaconda3-5.1.0-Linux-x86_64.sh 安装好Anaconda后，可以检查下python版本">
+<meta property="og:description" content="问题1描述： 1import tensorflow 控制台输出 12RuntimeError: module compiled against API version 0xc but this version of numpy is 0xbRuntimeError: module compiled against API version 0xc but this version of numpy">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-01T13:15:44.157Z">
+<meta property="og:updated_time" content="2018-06-02T06:29:46.100Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ubuntu安装Anaconda和Tensorflow(GPU版)、opencv3 with contrib">
-<meta name="twitter:description" content="适用于服务器上多用户安装于自己目录的情况 Anaconda首先在官网下载对应的Anaconda的安装包,此处我选择Anaconda3-5.1.0-Linux-x86_64.sh，对应python3.6 bash Anaconda3-5.1.0-Linux-x86_64.sh  ./Anaconda3-5.1.0-Linux-x86_64.sh 安装好Anaconda后，可以检查下python版本">
+<meta name="twitter:title" content="TensorFlow Problems">
+<meta name="twitter:description" content="问题1描述： 1import tensorflow 控制台输出 12RuntimeError: module compiled against API version 0xc but this version of numpy is 0xbRuntimeError: module compiled against API version 0xc but this version of numpy">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/05/21/Anaconda 安装python opencv/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/06/02/TensorFlow-Problems/"/>
 
 
 
 
 
-  <title>Ubuntu安装Anaconda和Tensorflow(GPU版)、opencv3 with contrib | xmq blogs</title>
+  <title>TensorFlow Problems | xmq blogs</title>
   
 
 
@@ -235,7 +235,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/21/Anaconda 安装python opencv/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/02/TensorFlow-Problems/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xmq">
@@ -252,7 +252,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Ubuntu安装Anaconda和Tensorflow(GPU版)、opencv3 with contrib</h1>
+          <h1 class="post-title" itemprop="name headline">TensorFlow Problems</h1>
         
 
         <div class="post-meta">
@@ -264,8 +264,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-21T01:20:23+08:00">
-                2018-05-21
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-02T14:20:06+08:00">
+                2018-06-02
               </time>
             
 
@@ -287,8 +287,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/教程/" itemprop="url" rel="index">
-                    <span itemprop="name">教程</span>
+                  <a href="/categories/错误收集/" itemprop="url" rel="index">
+                    <span itemprop="name">错误收集</span>
                   </a>
                 </span>
 
@@ -324,29 +324,20 @@
       
 
       
-        <p><strong><em>适用于服务器上多用户安装于自己目录的情况</em></strong></p>
-<h1 id="Anaconda"><a href="#Anaconda" class="headerlink" title="Anaconda"></a>Anaconda</h1><p>首先在<a href="https://repo.continuum.io/archive/" target="_blank" rel="noopener">官网</a>下载对应的Anaconda的安装包,此处我选择Anaconda3-5.1.0-Linux-x86_64.sh，对应python3.6</p>
-<pre><code>bash Anaconda3-5.1.0-Linux-x86_64.sh
-
-./Anaconda3-5.1.0-Linux-x86_64.sh
-</code></pre><p>安装好Anaconda后，可以检查下python版本</p>
-<pre><code>python -v
-</code></pre><p>安装好的Anaconda里面带有自带的spyder，服务器上用xshell带有图形界面</p>
-<p>为了加速下载将软件的源修改为ustc的源</p>
-<pre><code>conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/free/
-conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/main/
-conda config --set show_channel_urls yes
-</code></pre><h1 id="Tensorflow"><a href="#Tensorflow" class="headerlink" title="Tensorflow"></a>Tensorflow</h1><p>然后通过Anaconda来安装GPU版本的tensorflow，安装的同时会自动安装CUDA，CUDNN等库</p>
-<pre><code>conda install tensorflow-gpu
-</code></pre><p>配置环境变量</p>
-<pre><code>source .bashrc
-</code></pre><h1 id="Opencv3-with-contrib"><a href="#Opencv3-with-contrib" class="headerlink" title="Opencv3 with contrib"></a>Opencv3 with contrib</h1><p>安装带有contrib包的opencv3</p>
-<pre><code>pip install opencv-contrib-python
-</code></pre><p>查看python下opencv的版本</p>
-<pre><code>python
-import cv2
-cv2.__version__
-</code></pre><p>​    </p>
+        <h1 id="问题1"><a href="#问题1" class="headerlink" title="问题1"></a>问题1</h1><p><strong>描述</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow</span><br></pre></td></tr></table></figure>
+<p>控制台输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RuntimeError: module compiled against API version 0xc but this version of numpy is 0xb</span><br><span class="line">RuntimeError: module compiled against API version 0xc but this version of numpy is 0xb</span><br></pre></td></tr></table></figure>
+<p><strong>解决</strong>：</p>
+<p>numpy版本问题,需要升级</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install numpy --upgrade</span><br></pre></td></tr></table></figure>
+<p>控制台输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Looking in indexes: https://mirrors.ustc.edu.cn/pypi/web/simple</span><br><span class="line">Collecting numpy</span><br><span class="line">  Downloading https://mirrors.ustc.edu.cn/pypi/web/packages/c0/e7/08f059a00367fd613e4f2875a16c70b6237268a1d6d166c6d36acada8301/numpy-1.14.3-cp27-cp27mu-manylinux1_x86_64.whl (12.1MB)</span><br><span class="line">    100% |████████████████████████████████| 12.1MB 73.3MB/s </span><br><span class="line">mxnet-cu90 1.1.0 has requirement numpy&lt;=1.13.3, but you&apos;ll have numpy 1.14.3 which is incompatible.</span><br><span class="line">Installing collected packages: numpy</span><br><span class="line">  Found existing installation: numpy 1.13.3</span><br><span class="line">    Uninstalling numpy-1.13.3:</span><br><span class="line">      Successfully uninstalled numpy-1.13.3</span><br><span class="line">Successfully installed numpy-1.14.3</span><br></pre></td></tr></table></figure>
+<p>再次尝试tensorflow</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(venv) py@VIPA207:~/tensorflow$ python</span><br><span class="line">Python 2.7.12 (default, Dec  4 2017, 14:50:18) </span><br><span class="line">[GCC 5.4.0 20160609] on linux2</span><br><span class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span><br><span class="line">&gt;&gt;&gt; import tensorflow</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>疑点</strong>：可以看出tensorflow是没什么问题了，但是控制台输出中有这样一句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mxnet-cu90 1.1.0 has requirement numpy&lt;=1.13.3, but you&apos;ll have numpy 1.14.3 which is incompatible.</span><br></pre></td></tr></table></figure>
+<p>可知新升级的numpy版本与mxnet需要的版本冲突了，也许只能再用一个虚拟环境才能解决这二者之间numpy版本矛盾的问题了！</p>
 
       
     </div>
@@ -366,7 +357,7 @@ cv2.__version__
           
             <a href="/tags/python/" rel="tag"># python</a>
           
-            <a href="/tags/linux/" rel="tag"># linux</a>
+            <a href="/tags/tensorflow/" rel="tag"># tensorflow</a>
           
         </div>
       
@@ -379,15 +370,15 @@ cv2.__version__
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/06/01/整理数据的各种问题/" rel="next" title="整理数据的各种问题">
+                <i class="fa fa-chevron-left"></i> 整理数据的各种问题
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/21/Ubuntu安装CUDA、CUDNN/" rel="prev" title="Ubuntu安装CUDA、CUDNN">
-                Ubuntu安装CUDA、CUDNN <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -526,7 +517,7 @@ cv2.__version__
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Anaconda"><span class="nav-number">1.</span> <span class="nav-text">Anaconda</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tensorflow"><span class="nav-number">2.</span> <span class="nav-text">Tensorflow</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Opencv3-with-contrib"><span class="nav-number">3.</span> <span class="nav-text">Opencv3 with contrib</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题1"><span class="nav-number">1.</span> <span class="nav-text">问题1</span></a></li></ol></div>
             
 
           </div>

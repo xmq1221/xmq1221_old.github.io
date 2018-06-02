@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-06-01T13:42:28.012Z</updated>
+  <updated>2018-06-02T06:29:46.100Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>TensorFlow Problems</title>
+    <link href="http://yoursite.com/2018/06/02/TensorFlow-Problems/"/>
+    <id>http://yoursite.com/2018/06/02/TensorFlow-Problems/</id>
+    <published>2018-06-02T06:20:06.000Z</published>
+    <updated>2018-06-02T06:29:46.100Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="问题1"><a href="#问题1" class="headerlink" title="问题1"></a>问题1</h1><p><strong>描述</strong>：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow</span><br></pre></td></tr></table></figure><p>控制台输出</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RuntimeError: module compiled against API version 0xc but this version of numpy is 0xb</span><br><span class="line">RuntimeError: module compiled against API version 0xc but this version of numpy is 0xb</span><br></pre></td></tr></table></figure><p><strong>解决</strong>：</p><p>numpy版本问题,需要升级</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install numpy --upgrade</span><br></pre></td></tr></table></figure><p>控制台输出</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Looking in indexes: https://mirrors.ustc.edu.cn/pypi/web/simple</span><br><span class="line">Collecting numpy</span><br><span class="line">  Downloading https://mirrors.ustc.edu.cn/pypi/web/packages/c0/e7/08f059a00367fd613e4f2875a16c70b6237268a1d6d166c6d36acada8301/numpy-1.14.3-cp27-cp27mu-manylinux1_x86_64.whl (12.1MB)</span><br><span class="line">    100% |████████████████████████████████| 12.1MB 73.3MB/s </span><br><span class="line">mxnet-cu90 1.1.0 has requirement numpy&lt;=1.13.3, but you&apos;ll have numpy 1.14.3 which is incompatible.</span><br><span class="line">Installing collected packages: numpy</span><br><span class="line">  Found existing installation: numpy 1.13.3</span><br><span class="line">    Uninstalling numpy-1.13.3:</span><br><span class="line">      Successfully uninstalled numpy-1.13.3</span><br><span class="line">Successfully installed numpy-1.14.3</span><br></pre></td></tr></table></figure><p>再次尝试tensorflow</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(venv) py@VIPA207:~/tensorflow$ python</span><br><span class="line">Python 2.7.12 (default, Dec  4 2017, 14:50:18) </span><br><span class="line">[GCC 5.4.0 20160609] on linux2</span><br><span class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span><br><span class="line">&gt;&gt;&gt; import tensorflow</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure><p><strong>疑点</strong>：可以看出tensorflow是没什么问题了，但是控制台输出中有这样一句</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mxnet-cu90 1.1.0 has requirement numpy&lt;=1.13.3, but you&apos;ll have numpy 1.14.3 which is incompatible.</span><br></pre></td></tr></table></figure><p>可知新升级的numpy版本与mxnet需要的版本冲突了，也许只能再用一个虚拟环境才能解决这二者之间numpy版本矛盾的问题了！</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;问题1&quot;&gt;&lt;a href=&quot;#问题1&quot; class=&quot;headerlink&quot; title=&quot;问题1&quot;&gt;&lt;/a&gt;问题1&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;描述&lt;/strong&gt;：&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;
+      
+    
+    </summary>
+    
+      <category term="错误收集" scheme="http://yoursite.com/categories/%E9%94%99%E8%AF%AF%E6%94%B6%E9%9B%86/"/>
+    
+    
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+      <category term="tensorflow" scheme="http://yoursite.com/tags/tensorflow/"/>
+    
+  </entry>
   
   <entry>
     <title>整理数据的各种问题</title>
