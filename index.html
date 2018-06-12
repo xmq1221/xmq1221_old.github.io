@@ -231,6 +231,177 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/07/使用TensorFlow的Slim模块训练分类器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xmq">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmq blogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/07/使用TensorFlow的Slim模块训练分类器/" itemprop="url">使用TensorFlow的Slim模块训练分类器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-07T21:58:48+08:00">
+                2018-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/深度学习/" itemprop="url" rel="index">
+                    <span itemprop="name">深度学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>使用TensorFlow的Slim模块训练人脸的正脸（frontal）与侧脸（Profile）的分类器</p>
+<p>参考<a href="https://github.com/tensorflow/models/tree/master/research/slim" target="_blank" rel="noopener">官方教程</a>与<a href="https://blog.csdn.net/LiJiancheng0614/article/details/77727445" target="_blank" rel="noopener">此篇</a>。</p>
+<h1 id="下载Slim模块"><a href="#下载Slim模块" class="headerlink" title="下载Slim模块"></a>下载Slim模块</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/tensorflow/models/</span><br></pre></td></tr></table></figure>
+<p>测试是否可用，若可用则无错误输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd models/research/slim</span><br><span class="line">python -c &quot;from nets import cifarnet; mynet = cifarnet.cifarnet&quot;</span><br></pre></td></tr></table></figure>
+<h1 id="准备数据集"><a href="#准备数据集" class="headerlink" title="准备数据集"></a>准备数据集</h1><p>使用的数据集：<a href="http://www.cfpw.io/" target="_blank" rel="noopener">Celebrities in Frontal-Profile in the Wild</a></p>
+<p>数据集中包含了许多名人的正脸与侧脸的图片，每人均有编号</p>
+<h2 id="数据集编号"><a href="#数据集编号" class="headerlink" title="数据集编号"></a>数据集编号</h2><p>写两个py脚本给frontal和profile的图片编号，存到另一个地方放着，同时得到两个txt：<code>F_list.txt</code> 、<code>P_list.txt</code> ，其中包含了正脸与侧脸的编号后图片的存放位置</p>
+<p>可以得知，正脸图片5000张，侧脸图片2000张</p>
+<h2 id="生成训练集与验证集"><a href="#生成训练集与验证集" class="headerlink" title="生成训练集与验证集"></a>生成训练集与验证集</h2><p>从frontal的txt尾取2000张出来 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -2000 F_list.txt &gt;F_list_2000.txt</span><br></pre></td></tr></table></figure>
+<p>合并两个txt 为<code>list.txt</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat F_list_2000.txt P_list.txt &gt; list.txt</span><br></pre></td></tr></table></figure>
+<p>写一个py脚本随机选350张图片作为val集合，剩余的作为train集合</p>
+<h2 id="生成tf格式的数据"><a href="#生成tf格式的数据" class="headerlink" title="生成tf格式的数据"></a>生成tf格式的数据</h2><p>可以根据官方的<code>download_and_convert_data.py</code> 改写生成自己的数据集，可以得到一系列<code>.tfrecord</code> 格式的数据</p>
+<h2 id="出现的错误"><a href="#出现的错误" class="headerlink" title="出现的错误"></a>出现的错误</h2><figure class="highlight plain"><figcaption><span>image 1/3650 shard 0Traceback (most recent call last):</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  File &quot;/home/disk3/py/venv/local/lib/python2.7/site-packages/tensorflow/python/framework/errors_impl.py&quot;, line 519, in exit</span><br><span class="line"></span><br><span class="line">    c_api.TF_GetCode(self.status.status)</span><br><span class="line"></span><br><span class="line">tensorflow.python.framework.errors_impl.NotFoundError: fpface/proflie/p-0001965.jpg; No such file or directory</span><br></pre></td></tr></table></figure>
+<p>解决：文件名写错了，profile写成了proflie</p>
+<h1 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h1><h2 id="读入自己的数据"><a href="#读入自己的数据" class="headerlink" title="读入自己的数据"></a>读入自己的数据</h2><p>修改<code>models/slim/datasets/dataset_classification.py</code> ，写入以下的代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">slim = tf.contrib.slim</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_dataset</span><span class="params">(dataset_dir, num_samples, num_classes, labels_to_names_path=None, file_pattern=<span class="string">'*.tfrecord'</span>)</span>:</span></span><br><span class="line">    file_pattern = os.path.join(dataset_dir, file_pattern)</span><br><span class="line">    keys_to_features = &#123;</span><br><span class="line">        <span class="string">'image/encoded'</span>: tf.FixedLenFeature((), tf.string, default_value=<span class="string">''</span>),</span><br><span class="line">        <span class="string">'image/format'</span>: tf.FixedLenFeature((), tf.string, default_value=<span class="string">'png'</span>),</span><br><span class="line">        <span class="string">'image/class/label'</span>: tf.FixedLenFeature(</span><br><span class="line">            [], tf.int64, default_value=tf.zeros([], dtype=tf.int64)),</span><br><span class="line">    &#125;</span><br><span class="line">    items_to_handlers = &#123;</span><br><span class="line">        <span class="string">'image'</span>: slim.tfexample_decoder.Image(),</span><br><span class="line">        <span class="string">'label'</span>: slim.tfexample_decoder.Tensor(<span class="string">'image/class/label'</span>),</span><br><span class="line">    &#125;</span><br><span class="line">    decoder = slim.tfexample_decoder.TFExampleDecoder(keys_to_features, items_to_handlers)</span><br><span class="line">    items_to_descriptions = &#123;</span><br><span class="line">        <span class="string">'image'</span>: <span class="string">'A color image of varying size.'</span>,</span><br><span class="line">        <span class="string">'label'</span>: <span class="string">'A single integer between 0 and '</span> + str(num_classes - <span class="number">1</span>),</span><br><span class="line">    &#125;</span><br><span class="line">    labels_to_names = <span class="keyword">None</span></span><br><span class="line">    <span class="keyword">if</span> labels_to_names_path <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">        fd = open(labels_to_names_path)</span><br><span class="line">        labels_to_names = &#123;i : line.strip() <span class="keyword">for</span> i, line <span class="keyword">in</span> enumerate(fd)&#125;</span><br><span class="line">        fd.close()</span><br><span class="line">    <span class="keyword">return</span> slim.dataset.Dataset(</span><br><span class="line">            data_sources=file_pattern,</span><br><span class="line">            reader=tf.TFRecordReader,</span><br><span class="line">            decoder=decoder,</span><br><span class="line">            num_samples=num_samples,</span><br><span class="line">            items_to_descriptions=items_to_descriptions,</span><br><span class="line">            num_classes=num_classes,</span><br><span class="line">            labels_to_names=labels_to_names)</span><br></pre></td></tr></table></figure>
+<h2 id="训练-1"><a href="#训练-1" class="headerlink" title="训练"></a>训练</h2><p>使用官方的训练脚本，修改参数为自己的，无fine-tuning</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">python train_image_classifier.py \  </span><br><span class="line">    --train_dir=train_logs \  </span><br><span class="line">    --dataset_dir=train \    </span><br><span class="line">    --num_samples=3650 \     </span><br><span class="line">    --num_classes=2 \</span><br><span class="line">    --labels_to_names_path=label.txt \   </span><br><span class="line">    --model_name=inception_v3 \  </span><br><span class="line">    --max_number_of_steps=20000 \</span><br><span class="line">    --batch_size=32 \</span><br><span class="line">    --learning_rate=0.01 \</span><br><span class="line">    --learning_rate_decay_type=fixed \</span><br><span class="line">    --save_interval_secs=60 \</span><br><span class="line">    --save_summaries_secs=60 \</span><br><span class="line">    --log_every_n_steps=10 \</span><br><span class="line">    --optimizer=rmsprop \</span><br><span class="line">    --weight_decay=0.00004</span><br></pre></td></tr></table></figure>
+<h2 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h2><p>使用tensorboard可视化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tensorboard --logdir train_logs/  --port 6007</span><br><span class="line">x-www-browser &quot;http://127.0.1.1:6007&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/12286585-a815e054a1289c39.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1"></p>
+<h1 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h1><h2 id="验证-1"><a href="#验证-1" class="headerlink" title="验证"></a>验证</h2><p>使用事先分好的验证集验证</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CUDA_VISIBLE_DEVICES=&quot;0&quot; python eval.py \</span><br><span class="line">    --checkpoint_path=train_logs/ \</span><br><span class="line">    --eval_dir=eval_logs \</span><br><span class="line">    --dataset_dir=val \</span><br><span class="line">    --num_samples=350 \</span><br><span class="line">    --num_classes=2 \</span><br><span class="line">    --model_name=inception_v3</span><br></pre></td></tr></table></figure>
+<p>验证结果输出</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/12286585-fdf76fece91097e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2"></p>
+<h2 id="可视化-1"><a href="#可视化-1" class="headerlink" title="可视化"></a>可视化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tensorboard --logdir eval_logs/  --port 6007</span><br><span class="line">x-www-browser &quot;http://127.0.1.1:6007&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/12286585-8b0337af57b523ee.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="3"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/02/Anaconda-安装pytorch、torchvision/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1039,7 +1210,7 @@ cv2.__version__
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1050,7 +1221,7 @@ cv2.__version__
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -1061,7 +1232,7 @@ cv2.__version__
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python,TensorFlow," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="xmq blogs" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="使用TensorFlow的Slim模块训练人脸的正脸（frontal）与侧脸（Profile）的分类器 参考官方教程与此篇。 下载Slim模块1git clone https://github.com/tensorflow/models/ 测试是否可用，若可用则无错误输出 12cd models/research/slimpython -c &amp;quot;from nets import cifar">
+<meta name="keywords" content="python,TensorFlow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用TensorFlow的Slim模块训练分类器">
+<meta property="og:url" content="http://yoursite.com/2018/06/07/使用TensorFlow的Slim模块训练分类器/index.html">
+<meta property="og:site_name" content="xmq blogs">
+<meta property="og:description" content="使用TensorFlow的Slim模块训练人脸的正脸（frontal）与侧脸（Profile）的分类器 参考官方教程与此篇。 下载Slim模块1git clone https://github.com/tensorflow/models/ 测试是否可用，若可用则无错误输出 12cd models/research/slimpython -c &amp;quot;from nets import cifar">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/12286585-a815e054a1289c39.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/12286585-fdf76fece91097e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/12286585-8b0337af57b523ee.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-06-08T12:54:36.023Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用TensorFlow的Slim模块训练分类器">
+<meta name="twitter:description" content="使用TensorFlow的Slim模块训练人脸的正脸（frontal）与侧脸（Profile）的分类器 参考官方教程与此篇。 下载Slim模块1git clone https://github.com/tensorflow/models/ 测试是否可用，若可用则无错误输出 12cd models/research/slimpython -c &amp;quot;from nets import cifar">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/12286585-a815e054a1289c39.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/07/使用TensorFlow的Slim模块训练分类器/"/>
+
+
+
+
+
+  <title>使用TensorFlow的Slim模块训练分类器 | xmq blogs</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xmq blogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">害怕却又向往</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/07/使用TensorFlow的Slim模块训练分类器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xmq">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmq blogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用TensorFlow的Slim模块训练分类器</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-07T21:58:48+08:00">
+                2018-06-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/深度学习/" itemprop="url" rel="index">
+                    <span itemprop="name">深度学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>使用TensorFlow的Slim模块训练人脸的正脸（frontal）与侧脸（Profile）的分类器</p>
+<p>参考<a href="https://github.com/tensorflow/models/tree/master/research/slim" target="_blank" rel="noopener">官方教程</a>与<a href="https://blog.csdn.net/LiJiancheng0614/article/details/77727445" target="_blank" rel="noopener">此篇</a>。</p>
+<h1 id="下载Slim模块"><a href="#下载Slim模块" class="headerlink" title="下载Slim模块"></a>下载Slim模块</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/tensorflow/models/</span><br></pre></td></tr></table></figure>
+<p>测试是否可用，若可用则无错误输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd models/research/slim</span><br><span class="line">python -c &quot;from nets import cifarnet; mynet = cifarnet.cifarnet&quot;</span><br></pre></td></tr></table></figure>
+<h1 id="准备数据集"><a href="#准备数据集" class="headerlink" title="准备数据集"></a>准备数据集</h1><p>使用的数据集：<a href="http://www.cfpw.io/" target="_blank" rel="noopener">Celebrities in Frontal-Profile in the Wild</a></p>
+<p>数据集中包含了许多名人的正脸与侧脸的图片，每人均有编号</p>
+<h2 id="数据集编号"><a href="#数据集编号" class="headerlink" title="数据集编号"></a>数据集编号</h2><p>写两个py脚本给frontal和profile的图片编号，存到另一个地方放着，同时得到两个txt：<code>F_list.txt</code> 、<code>P_list.txt</code> ，其中包含了正脸与侧脸的编号后图片的存放位置</p>
+<p>可以得知，正脸图片5000张，侧脸图片2000张</p>
+<h2 id="生成训练集与验证集"><a href="#生成训练集与验证集" class="headerlink" title="生成训练集与验证集"></a>生成训练集与验证集</h2><p>从frontal的txt尾取2000张出来 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -2000 F_list.txt &gt;F_list_2000.txt</span><br></pre></td></tr></table></figure>
+<p>合并两个txt 为<code>list.txt</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat F_list_2000.txt P_list.txt &gt; list.txt</span><br></pre></td></tr></table></figure>
+<p>写一个py脚本随机选350张图片作为val集合，剩余的作为train集合</p>
+<h2 id="生成tf格式的数据"><a href="#生成tf格式的数据" class="headerlink" title="生成tf格式的数据"></a>生成tf格式的数据</h2><p>可以根据官方的<code>download_and_convert_data.py</code> 改写生成自己的数据集，可以得到一系列<code>.tfrecord</code> 格式的数据</p>
+<h2 id="出现的错误"><a href="#出现的错误" class="headerlink" title="出现的错误"></a>出现的错误</h2><figure class="highlight plain"><figcaption><span>image 1/3650 shard 0Traceback (most recent call last):</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  File &quot;/home/disk3/py/venv/local/lib/python2.7/site-packages/tensorflow/python/framework/errors_impl.py&quot;, line 519, in exit</span><br><span class="line"></span><br><span class="line">    c_api.TF_GetCode(self.status.status)</span><br><span class="line"></span><br><span class="line">tensorflow.python.framework.errors_impl.NotFoundError: fpface/proflie/p-0001965.jpg; No such file or directory</span><br></pre></td></tr></table></figure>
+<p>解决：文件名写错了，profile写成了proflie</p>
+<h1 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h1><h2 id="读入自己的数据"><a href="#读入自己的数据" class="headerlink" title="读入自己的数据"></a>读入自己的数据</h2><p>修改<code>models/slim/datasets/dataset_classification.py</code> ，写入以下的代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">slim = tf.contrib.slim</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_dataset</span><span class="params">(dataset_dir, num_samples, num_classes, labels_to_names_path=None, file_pattern=<span class="string">'*.tfrecord'</span>)</span>:</span></span><br><span class="line">    file_pattern = os.path.join(dataset_dir, file_pattern)</span><br><span class="line">    keys_to_features = &#123;</span><br><span class="line">        <span class="string">'image/encoded'</span>: tf.FixedLenFeature((), tf.string, default_value=<span class="string">''</span>),</span><br><span class="line">        <span class="string">'image/format'</span>: tf.FixedLenFeature((), tf.string, default_value=<span class="string">'png'</span>),</span><br><span class="line">        <span class="string">'image/class/label'</span>: tf.FixedLenFeature(</span><br><span class="line">            [], tf.int64, default_value=tf.zeros([], dtype=tf.int64)),</span><br><span class="line">    &#125;</span><br><span class="line">    items_to_handlers = &#123;</span><br><span class="line">        <span class="string">'image'</span>: slim.tfexample_decoder.Image(),</span><br><span class="line">        <span class="string">'label'</span>: slim.tfexample_decoder.Tensor(<span class="string">'image/class/label'</span>),</span><br><span class="line">    &#125;</span><br><span class="line">    decoder = slim.tfexample_decoder.TFExampleDecoder(keys_to_features, items_to_handlers)</span><br><span class="line">    items_to_descriptions = &#123;</span><br><span class="line">        <span class="string">'image'</span>: <span class="string">'A color image of varying size.'</span>,</span><br><span class="line">        <span class="string">'label'</span>: <span class="string">'A single integer between 0 and '</span> + str(num_classes - <span class="number">1</span>),</span><br><span class="line">    &#125;</span><br><span class="line">    labels_to_names = <span class="keyword">None</span></span><br><span class="line">    <span class="keyword">if</span> labels_to_names_path <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">        fd = open(labels_to_names_path)</span><br><span class="line">        labels_to_names = &#123;i : line.strip() <span class="keyword">for</span> i, line <span class="keyword">in</span> enumerate(fd)&#125;</span><br><span class="line">        fd.close()</span><br><span class="line">    <span class="keyword">return</span> slim.dataset.Dataset(</span><br><span class="line">            data_sources=file_pattern,</span><br><span class="line">            reader=tf.TFRecordReader,</span><br><span class="line">            decoder=decoder,</span><br><span class="line">            num_samples=num_samples,</span><br><span class="line">            items_to_descriptions=items_to_descriptions,</span><br><span class="line">            num_classes=num_classes,</span><br><span class="line">            labels_to_names=labels_to_names)</span><br></pre></td></tr></table></figure>
+<h2 id="训练-1"><a href="#训练-1" class="headerlink" title="训练"></a>训练</h2><p>使用官方的训练脚本，修改参数为自己的，无fine-tuning</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">python train_image_classifier.py \  </span><br><span class="line">    --train_dir=train_logs \  </span><br><span class="line">    --dataset_dir=train \    </span><br><span class="line">    --num_samples=3650 \     </span><br><span class="line">    --num_classes=2 \</span><br><span class="line">    --labels_to_names_path=label.txt \   </span><br><span class="line">    --model_name=inception_v3 \  </span><br><span class="line">    --max_number_of_steps=20000 \</span><br><span class="line">    --batch_size=32 \</span><br><span class="line">    --learning_rate=0.01 \</span><br><span class="line">    --learning_rate_decay_type=fixed \</span><br><span class="line">    --save_interval_secs=60 \</span><br><span class="line">    --save_summaries_secs=60 \</span><br><span class="line">    --log_every_n_steps=10 \</span><br><span class="line">    --optimizer=rmsprop \</span><br><span class="line">    --weight_decay=0.00004</span><br></pre></td></tr></table></figure>
+<h2 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h2><p>使用tensorboard可视化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tensorboard --logdir train_logs/  --port 6007</span><br><span class="line">x-www-browser &quot;http://127.0.1.1:6007&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/12286585-a815e054a1289c39.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1"></p>
+<h1 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h1><h2 id="验证-1"><a href="#验证-1" class="headerlink" title="验证"></a>验证</h2><p>使用事先分好的验证集验证</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CUDA_VISIBLE_DEVICES=&quot;0&quot; python eval.py \</span><br><span class="line">    --checkpoint_path=train_logs/ \</span><br><span class="line">    --eval_dir=eval_logs \</span><br><span class="line">    --dataset_dir=val \</span><br><span class="line">    --num_samples=350 \</span><br><span class="line">    --num_classes=2 \</span><br><span class="line">    --model_name=inception_v3</span><br></pre></td></tr></table></figure>
+<p>验证结果输出</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/12286585-fdf76fece91097e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2"></p>
+<h2 id="可视化-1"><a href="#可视化-1" class="headerlink" title="可视化"></a>可视化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tensorboard --logdir eval_logs/  --port 6007</span><br><span class="line">x-www-browser &quot;http://127.0.1.1:6007&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/12286585-8b0337af57b523ee.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="3"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/TensorFlow/" rel="tag"># TensorFlow</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/02/Anaconda-安装pytorch、torchvision/" rel="next" title="Ubuntu用Anaconda 安装PyTorch、torchvision">
+                <i class="fa fa-chevron-left"></i> Ubuntu用Anaconda 安装PyTorch、torchvision
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">xmq</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#下载Slim模块"><span class="nav-number">1.</span> <span class="nav-text">下载Slim模块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#准备数据集"><span class="nav-number">2.</span> <span class="nav-text">准备数据集</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据集编号"><span class="nav-number">2.1.</span> <span class="nav-text">数据集编号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成训练集与验证集"><span class="nav-number">2.2.</span> <span class="nav-text">生成训练集与验证集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成tf格式的数据"><span class="nav-number">2.3.</span> <span class="nav-text">生成tf格式的数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#出现的错误"><span class="nav-number">2.4.</span> <span class="nav-text">出现的错误</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#训练"><span class="nav-number">3.</span> <span class="nav-text">训练</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#读入自己的数据"><span class="nav-number">3.1.</span> <span class="nav-text">读入自己的数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#训练-1"><span class="nav-number">3.2.</span> <span class="nav-text">训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可视化"><span class="nav-number">3.3.</span> <span class="nav-text">可视化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#验证"><span class="nav-number">4.</span> <span class="nav-text">验证</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#验证-1"><span class="nav-number">4.1.</span> <span class="nav-text">验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可视化-1"><span class="nav-number">4.2.</span> <span class="nav-text">可视化</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xmq</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
